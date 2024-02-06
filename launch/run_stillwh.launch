@@ -1,0 +1,43 @@
+<launch>
+
+    <!-- STILL Dataset -->
+    
+    <!-- Seq 02 -->
+    <arg name="bag_file" default="/media/tmn/mySataSSD1/DATASETS/STILL_WAREHOUSE/Dataset/exported/stillwh_03_20221011_094240/sensor_data/*.bag"/> 
+    
+    <!-- Seq 04 -->
+    <!-- <arg  name="bag_file"  default="/media/tmn/mySataSSD1/tuhh_itl_stillwh/tuhh-groundtruth/exported/20221011_094240_rec_dataset_exported/sensor_data.bag"/> -->
+
+    <!-- <param name="/use_sim_time" value="true" /> -->
+
+    <arg name="rviz" default="true" />
+
+    <rosparam command="load" file="$(find fast_lio)/config/stillwh.yaml" />
+
+    <!-- Create the merge pointcloud -->
+    <!-- <node pkg="merge_lidar" type="merge_lidar_node" name="merge_lidar" respawn="true" output="log" required="false">
+        <rosparam file="$(find slict)/config/stillwh.yaml" command="load"/>
+        <rosparam param="lidar_channels"> [64] </rosparam>
+    </node> -->
+
+    <param name="feature_extract_enable" type="bool" value="0"/>
+    <param name="point_filter_num" type="int" value="4"/>
+    <param name="max_iteration" type="int" value="3" />
+    <param name="filter_size_surf" type="double" value="0.2" />
+    <param name="filter_size_map" type="double" value="0.2" />
+    <param name="cube_side_length" type="double" value="1000" />
+    <param name="runtime_pos_log_enable" type="bool" value="0" />
+    <node pkg="fast_lio" type="fastlio_mapping" name="laserMapping" output="screen" /> 
+
+    <group if="$(arg rviz)">
+        <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find fast_lio)/rviz_cfg/stillwh.rviz" />
+    </group>
+
+    <node required="false" pkg="rosbag" type="play" name="rosbag_player"
+          args="$(arg bag_file) -r 1.0 -s 0"
+          launch-prefix="bash -c 'sleep 1; $0 $@' "/>
+
+    <node pkg="tf2_ros" type="static_transform_publisher"
+          name="world_vio_init_pub" args="0 0 0 0 0 0 1 world slam_init" />  
+
+</launch>

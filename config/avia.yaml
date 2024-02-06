@@ -1,0 +1,43 @@
+common:
+    lid_topic:  "/livox/lidar"
+    # imu_topic:  "/alphasense/imu"
+    imu_topic:  "/alphasense/imu_adis"
+    time_sync_en: false         # ONLY turn on when external time synchronization is really not possible
+    time_offset_lidar_to_imu: 0.0 # Time offset between lidar and IMU calibrated by other algorithms, e.g. LI-Init (can be found in README).
+                                  # This param will take effect no matter what time_sync_en is. So if the time offset is not known exactly, please set as 0.0
+
+preprocess:
+    lidar_type: 1                # 1 for Livox serials LiDAR, 2 for Velodyne LiDAR, 3 for ouster LiDAR, 
+    scan_line: 1
+    blind: 0.1
+
+mapping:
+    acc_cov: 0.01
+    gyr_cov: 0.01
+    b_acc_cov: 0.0001
+    b_gyr_cov: 0.0001
+    fov_degree: 90
+    det_range: 450.0
+    extrinsic_est_en:  false      # true: enable the online estimation of IMU-LiDAR extrinsic
+    
+    # IMU
+    # extrinsic_T: [ -0.003050707070886, -0.021993853931529,  0.150764152293800 ]
+    # extrinsic_R: [  0.999830032290584,  0.017023225563710, -0.007079288185738,
+    #                 0.017141659751669, -0.999708202564759,  0.017019789237732,
+    #                -0.006787490756361, -0.017138247172505, -0.999830090791974 ]
+    # IMU adis
+    extrinsic_T: [  0.015518929052511, -0.024163713385641, -0.182629129607178 ]
+    extrinsic_R: [ -0.024194946257683,  0.999555826502376, -0.017399835652713,
+                   -0.999707059606403, -0.024180271582520,  0.001053299252457,
+                    0.000632098653270,  0.017420223056815,  0.999848056596573 ]
+
+publish:
+    path_en:  false
+    scan_publish_en:  true       # false: close all the point cloud output
+    dense_publish_en: true       # false: low down the points number in a global-frame point clouds scan.
+    scan_bodyframe_pub_en: true  # true: output the point cloud scans in IMU-body-frame
+
+pcd_save:
+    pcd_save_en: true
+    interval: -1                 # how many LiDAR frames saved in each pcd file; 
+                                 # -1 : all frames will be saved in ONE pcd file, may lead to memory crash when having too much frames.
