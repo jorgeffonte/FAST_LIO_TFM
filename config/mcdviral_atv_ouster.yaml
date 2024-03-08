@@ -1,9 +1,9 @@
 common:
-    lid_topic: "/os_cloud_node_merged"
+    lid_topic: "/os_cloud_node/points"
     imu_topic: "/vn100/imu"
     
     time_sync_en: false            # ONLY turn on when external time synchronization is really not possible
-    time_offset_lidar_to_imu:  0.0 # Time offset between lidar and IMU calibrated by other algorithms, e.g. LI-Init (can be found in README).
+    time_offset_lidar_to_imu: -0.1 # Time offset between lidar and IMU calibrated by other algorithms, e.g. LI-Init (can be found in README).
                                    # This param will take effect no matter what time_sync_en is. So if the time offset is not known exactly, please set as 0.0
     
 preprocess:
@@ -27,10 +27,13 @@ mapping:
     det_range:  150.0
     extrinsic_est_en:  false      # true: enable the online estimation of IMU-LiDAR extrinsic
     
-    extrinsic_T: [ 0.0,  0.0,  0.0 ]
-    extrinsic_R: [ 1.0,  0.0,  0.0,
-                   0.0,  1.0,  0.0,
-                   0.0,  0.0,  1.0]
+    extrinsic_T: [ -0.060649229060416594,
+                   -0.012837544242408117,
+                   -0.020492606896077407 ]
+    extrinsic_R: [ 0.9999346552051229,      0.003477624535771754,  -0.010889970036688295,
+                   0.003587143302461965,   -0.9999430279821171,     0.010053516443599904,
+                  -0.010854387257665576,   -0.01009192338171122,   -0.999890161647627,  ]
+
 
 publish:
     path_en:  false

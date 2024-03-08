@@ -9,36 +9,23 @@
     <!-- <arg name="data_path" default="/media/tmn/mySataSSD1/DATASETS/MCDVIRAL/PublishedSequencesUnzipped"/> -->
 
     <!-- <arg  name="bag_file"  default="$(arg data_path)/ntu_day_01/*.bag"/> -->
-    <!-- <arg  name="bag_file"  default="$(arg data_path)/ntu_day_10/*.bag"/> -->
-    <!-- <arg  name="bag_file"  default="$(arg data_path)/ntu_night_08/*.bag"/> -->
-    <!-- <arg  name="bag_file"  default="$(arg data_path)/kth_day_09/*.bag"/> -->
-    <!-- <arg  name="bag_file"  default="$(arg data_path)/kth_night_01/*.bag"/> -->
+    <arg  name="bag_file"  default="$(arg data_path)/kth_day_06/*.bag"/>
     <!-- <arg  name="bag_file"  default="$(arg data_path)/tuhh_day_03/*.bag"/> -->
-    <arg  name="bag_file"  default="$(arg data_path)/tuhh_day_04/*.bag"/>
-    <!-- <arg  name="bag_file"  default="$(arg data_path)/tuhh_night_08/*.bag"/> -->
 
     <!-- Chose the config file based on the sequence names -->
-    <arg name="config_file" value="mcdviral_atv_livox.yaml" if="$(eval 'ntu_'  in bag_file)" />
-    <arg name="config_file" value="mcdviral_hhs_livox.yaml" if="$(eval 'kth_'  in bag_file)" />
-    <arg name="config_file" value="mcdviral_hhs_livox.yaml" if="$(eval 'tuhh_' in bag_file)" />
-
-    <!-- Extra config for the ouster vertical resolution -->
-    <!-- <arg name="os_vres" value="[1]" if="$(eval 'ntu_'  in bag_file)" />
-    <arg name="os_vres" value="[1]" if="$(eval 'kth_'  in bag_file)" />
-    <arg name="os_vres" value="[1]" if="$(eval 'tuhh_' in bag_file)" /> -->
-
-    <!-- <param name="/use_sim_time" value="true" /> -->
+    <arg name="config_file" value="mcdviral_atv_ouster.yaml" if="$(eval 'ntu_'  in bag_file)" />
+    <arg name="config_file" value="mcdviral_hhs_ouster.yaml" if="$(eval 'kth_'  in bag_file)" />
+    <arg name="config_file" value="mcdviral_hhs_ouster.yaml" if="$(eval 'tuhh_' in bag_file)" />
 
     <rosparam command="load" file="$(find fast_lio)/config/$(arg config_file)" />
 
     <!-- Run the livox to ouster converter -->
-    <!-- <node pkg="splio" type="splio_livox_to_ouster" name="splio_livox_to_ouster" respawn="false" output="log" required="true"></node>   -->
+    <node pkg="slict" type="slict_livox_to_ouster" name="slict_livox_to_ouster" respawn="false" output="log" required="true"></node>  
     
     <!-- Create the merge pointcloud -->
-    <!-- <node pkg="merge_lidar" type="merge_lidar_node" name="merge_lidar" respawn="true" output="log" required="false">
-            <rosparam file="$(find splio)/config/$(arg config_file)" command="load"/>
-            <rosparam param="lidar_channels" subst_value="True"> $(arg os_vres) </rosparam>
-    </node> -->
+    <node pkg="slict" type="slict_merge_lidar" name="slict_merge_lidar" respawn="true" output="screen" required="false">
+        <rosparam file="$(find slict)/config/mcdviral_atv.yaml" command="load"/>
+    </node>
 
     <param name="feature_extract_enable"  type="bool"   value="0"/>
     <param name="point_filter_num"        type="int"    value="1"/>
@@ -48,11 +35,11 @@
     <param name="cube_side_length"        type="double" value="1000" />
     <param name="runtime_pos_log_enable"  type="bool"   value="0" />
     <param name="exp_log_dir"             type="string" value="$(arg exp_log_dir)"/>
-    
     <node pkg="fast_lio" type="fastlio_mapping" name="laserMapping" output="screen"/>
 
     <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find fast_lio)/rviz_cfg/atv.rviz" />
 
+    <!-- <param name="/use_sim_time" value="true" /> -->
     <node required="$(arg autorun)" pkg="rosbag" type="play" name="rosbag_player"
           args="--clock $(arg bag_file) -r 1.0 -s 0"
           launch-prefix="bash -c 'sleep 1; $0 $@' "/>

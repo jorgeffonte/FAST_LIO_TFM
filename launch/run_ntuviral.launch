@@ -1,14 +1,14 @@
 <launch>
 
+    <!-- Create a param for bag file -->
+
     <arg name="autorun"     default="false"/>
     <arg name="exp_log_dir" default="false"/>
 
-    <!-- Launch file for ouster OS2-64 LiDAR -->
+    <arg name="bag_file" default="/home/tmn/nya_01/nya_01/nya_01.bag"/>
 
-    <!-- HILTI -->
-	<!-- <arg  name="bag_file" default="/media/$(env USER)/mySDSSD/DATASETS/hilti/BASEMENT_2/BASEMENT_2_mod.bag"/> -->
-	<!-- <arg  name="bag_file" default="/media/$(env USER)/mySDSSD/DATASETS/hilti/PARKING_1/PARKING_1_mod.bag"/> -->
-	<!-- <arg  name="bag_file" default="/media/$(env USER)/mySDSSD/DATASETS/hilti/Campus_1_mod.bag"/> -->
+
+    <!-- Launch file for ouster OS2-64 LiDAR -->
 
     <!-- NTU VIRAL -->
     <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/eee_01/eee_01_mod.bag"/> <arg name="start_time" default="0"/> -->
@@ -25,7 +25,7 @@
 
     <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/rtp_01/rtp_01_mod.bag"/>   <arg name="start_time" default="0"/> -->
     <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/rtp_02/rtp_02_mod.bag"/>   <arg name="start_time" default="0"/> -->
-    <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/rtp_03/rtp_03_mod.bag"/>   <arg name="start_time" default="0"/>
+    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/rtp_03/rtp_03_mod.bag"/> <arg name="start_time" default="0"/> -->
 
     <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/spms_01/spms_01_mod.bag"/> <arg name="start_time" default="0"/> -->
     <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/spms_02/spms_02_mod.bag"/> <arg name="start_time" default="0"/> -->
