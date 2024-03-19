@@ -5,50 +5,47 @@
     <arg name="autorun"     default="false"/>
     <arg name="exp_log_dir" default="false"/>
 
-    <arg name="bag_file" default="/home/tmn/nya_01/nya_01/nya_01.bag"/>
-
-
     <!-- Launch file for ouster OS2-64 LiDAR -->
 
     <!-- NTU VIRAL -->
-    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/eee_01/eee_01_mod.bag"/> <arg name="start_time" default="0"/> -->
-    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/eee_02/eee_02_mod.bag"/> <arg name="start_time" default="0"/> -->
-    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/eee_02/eee_02_mod.bag"/> <arg name="start_time" default="0"/> -->
+    <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/eee_01/eee_01*.bag"/> <arg name="start_time" default="0"/>
+    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/eee_02/eee_02*.bag"/> <arg name="start_time" default="0"/> -->
+    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/eee_02/eee_02*.bag"/> <arg name="start_time" default="0"/> -->
 
-    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/nya_01/nya_01_mod.bag"/> <arg name="start_time" default="0"/> -->
-    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/nya_02/nya_02_mod.bag"/> <arg name="start_time" default="0"/> -->
-    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/nya_03/nya_03_mod.bag"/> <arg name="start_time" default="0"/> -->
+    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/nya_01/nya_01*.bag"/> <arg name="start_time" default="0"/> -->
+    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/nya_02/nya_02*.bag"/> <arg name="start_time" default="0"/> -->
+    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/nya_03/nya_03*.bag"/> <arg name="start_time" default="0"/> -->
 
-    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/sbs_01/sbs_01_mod.bag"/> <arg name="start_time" default="0"/> -->
-    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/sbs_02/sbs_02_mod.bag"/> <arg name="start_time" default="0"/> -->
-    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/sbs_03/sbs_03_mod.bag"/> <arg name="start_time" default="0"/> -->
+    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/sbs_01/sbs_01*.bag"/> <arg name="start_time" default="0"/> -->
+    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/sbs_02/sbs_02*.bag"/> <arg name="start_time" default="0"/> -->
+    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/sbs_03/sbs_03*.bag"/> <arg name="start_time" default="0"/> -->
 
-    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/rtp_01/rtp_01_mod.bag"/>   <arg name="start_time" default="0"/> -->
-    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/rtp_02/rtp_02_mod.bag"/>   <arg name="start_time" default="0"/> -->
-    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/rtp_03/rtp_03_mod.bag"/> <arg name="start_time" default="0"/> -->
+    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/rtp_01/rtp_01*.bag"/> <arg name="start_time" default="0"/> -->
+    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/rtp_02/rtp_02*.bag"/> <arg name="start_time" default="0"/> -->
+    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/rtp_03/rtp_03*.bag"/> <arg name="start_time" default="0"/> -->
 
-    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/spms_01/spms_01_mod.bag"/> <arg name="start_time" default="0"/> -->
-    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/spms_02/spms_02_mod.bag"/> <arg name="start_time" default="0"/> -->
-    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/spms_03/spms_03_mod.bag"/> <arg name="start_time" default="0"/> -->
+    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/spms_01/spms_01*.bag"/> <arg name="start_time" default="0"/> -->
+    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/spms_02/spms_02*.bag"/> <arg name="start_time" default="0"/> -->
+    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/spms_03/spms_03*.bag"/> <arg name="start_time" default="0"/> -->
 
-    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/tnp_01/tnp_01_mod.bag"/>   <arg name="start_time" default="0"/> -->
-    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/tnp_02/tnp_02_mod.bag"/>   <arg name="start_time" default="0"/> -->
-    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/tnp_03/tnp_03_mod.bag"/>   <arg name="start_time" default="0"/> -->
+    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/tnp_01/tnp_01*.bag"/> <arg name="start_time" default="0"/> -->
+    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/tnp_02/tnp_02*.bag"/> <arg name="start_time" default="0"/> -->
+    <!-- <arg  name="bag_file" default="/media/tmn/mySataSSD21/DATASETS/NTU_VIRAL/DATA/tnp_03/tnp_03*.bag"/> <arg name="start_time" default="0"/> -->
 
     <!-- <param name="/use_sim_time" value="true" /> -->
-
     <arg name="rviz" default="true" />
 
-    <rosparam command="load" file="$(find fast_lio)/config/ntuviral.yaml" />
+    <!-- Create the merged pointcloud using slict_merge_lidar.
+         If you use slict_merge_lidar, remember:
+         + change the pointcloud topic to /os_cloud_node_merged
+         + change the extrinsic_T to [0, 0, 0]
+         + change the extrinsic_R to [1, 0, 0, 0, 1, 0, 0, 0, 1]-->
 
-    <!-- Create the merge pointcloud -->
-    <!-- <node pkg="merge_lidar" type="merge_lidar_node" name="merge_lidar" respawn="true" output="log" required="false">
+    <!-- <node pkg="slict" type="slict_merge_lidar" name="slict_merge_lidar" respawn="true" output="screen" required="false">
         <rosparam file="$(find slict)/config/ntuviral.yaml" command="load"/>
-        <rosparam param="lidar_channels"> [16, 16] </rosparam>
     </node> -->
-    <!-- <rosparam file="$(find slict)/config/ntuviral.yaml" command="load"/> -->
-    <!-- <node pkg="slict" type="slict_sensorsync" name="slict_sensorsync" respawn="true" output="log" required="false"> </node> -->
-    
+
+    <rosparam command="load" file="$(find fast_lio)/config/ntuviral.yaml" />
     <param name="feature_extract_enable" type="bool" value="0"/>
     <param name="point_filter_num" type="int" value="4"/>
     <param name="max_iteration" type="int" value="3" />
