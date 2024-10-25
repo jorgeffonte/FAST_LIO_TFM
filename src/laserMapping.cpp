@@ -47,6 +47,7 @@
 #include "IMU_Processing.hpp"
 #include <nav_msgs/Odometry.h>
 #include <nav_msgs/Path.h>
+#include <std_msgs/Float64.h>
 #include <visualization_msgs/Marker.h>
 #include <pcl_conversions/pcl_conversions.h>
 #include <pcl/point_cloud.h>
@@ -671,6 +672,13 @@ void set_posestamp(T & out)
     out.pose.orientation.w = geoQuat.w;
 }
 
+void publish_comp_time(const ros::Publisher & pubCompTime, float time)
+{
+    std_msgs::Float64 time_msg;
+    time_msg.data=time;
+    pubCompTime.publish(time_msg);
+}
+
 void publish_odometry(const ros::Publisher & pubOdomAftMapped)
 {
     odomAftMapped.header.frame_id = "slam_init";
@@ -716,7 +724,7 @@ void publish_path(const ros::Publisher pubPath)
     /*** if path is too large, the rvis will crash ***/
     static int jjj = 0;
     jjj++;
-    if (jjj % 10 == 0) 
+    if (jjj % 1 == 0) 
     {
         path.poses.push_back(msg_body_pose);
         pubPath.publish(path);
@@ -937,7 +945,7 @@ int main(int argc, char** argv)
     /*** ROS subscribe initialization ***/
     ros::Subscriber sub_pcl = p_pre->lidar_type == AVIA ? \
         nh.subscribe(lid_topic, 200000, livox_pcl_cbk) : \
-        nh.subscribe(lid_topic, 200000, standard_pcl_cbk);
+        nh.subscribe(lid_topic, 1, standard_pcl_cbk);
     ros::Subscriber sub_imu = nh.subscribe(imu_topic, 200000, imu_cbk);
     ros::Publisher pubLaserCloudFull = nh.advertise<sensor_msgs::PointCloud2>
             ("/cloud_registered", 100000);
@@ -949,6 +957,8 @@ int main(int argc, char** argv)
             ("/Laser_map", 100000);
     ros::Publisher pubOdomAftMapped = nh.advertise<nav_msgs::Odometry> 
             ("/Odometry", 100000);
+    ros::Publisher pubCompTime = nh.advertise<std_msgs::Float64> 
+            ("/comp_time", 100000);
     ros::Publisher pubIMUPredOdom = nh.advertise<nav_msgs::Odometry> 
             ("/PredOdom", 100000);
     ros::Publisher pubPath          = nh.advertise<nav_msgs::Path> 
@@ -1075,6 +1085,7 @@ int main(int argc, char** argv)
             t3 = omp_get_wtime();
             map_incremental();
             t5 = omp_get_wtime();
+            publish_comp_time(pubCompTime,(t5-t0)*1e3);
             
             /******* Publish points *******/
             if (path_en)                         publish_path(pubPath);
